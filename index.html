@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Відправка повідомлення в Telegram</title>
+</head>
+<body>
+    <h1>Введіть повідомлення для Telegram</h1>
+    <input type="text" id="inputField" placeholder="Введіть текст повідомлення" />
+    <button id="submitButton">Відправити</button>
+
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function() {
+            const inputValue = document.getElementById('inputField').value;
+
+            // Перевірка, чи поле не порожнє
+            if (inputValue.trim() === '') {
+                alert('Будь ласка, введіть текст повідомлення.');
+                return;
+            }
+
+            // Виконання POST запиту
+            fetch('http://16.170.247.170/send', { // Змініть URL на ваш
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: inputValue }) // Формат даних
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Успішно відправлено:', data);
+                alert('Дані успішно відправлено!');
+            })
+            .catch(error => {
+                console.error('Виникла помилка:', error);
+                alert('Сталася помилка при відправці даних.');
+            });
+        });
+    </script>
+</body>
+</html>
