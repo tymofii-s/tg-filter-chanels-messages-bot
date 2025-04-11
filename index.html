@@ -8,19 +8,10 @@
 <body>
     <h1>Введіть повідомлення для Telegram</h1>
     <input type="text" id="inputField" placeholder="Введіть текст повідомлення" />
-    <button id="submitButton">Відправити</button>
+    <button id="submitButton" onclick="fetchMessage()">Відправити</button>
 
     <script>
-        document.getElementById('submitButton').addEventListener('click', function() {
-            const inputValue = document.getElementById('inputField').value;
-
-            // Перевірка, чи поле не порожнє
-            if (inputValue.trim() === '') {
-                alert('Будь ласка, введіть текст повідомлення.');
-                return;
-            }
-
-            // Виконання POST запиту
+        function fetchMessage() {
             fetch('https://16.170.247.170')
             .then(response => {
                 if (!response.ok) {
@@ -36,7 +27,7 @@
                 console.error('Виникла помилка:', error);
                 alert('Сталася помилка при відправці даних.');
             });
-        });
+        }
     </script>
 </body>
 </html>
