@@ -21,13 +21,7 @@
             }
 
             // Виконання POST запиту
-            fetch('https://16.170.247.170', { // Змініть URL на ваш
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ message: inputValue }) // Формат даних
-            })
+            fetch('https://16.170.247.170')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
