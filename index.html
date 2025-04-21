@@ -12,7 +12,7 @@
 
     <script>
         function fetchMessage() {
-            fetch('https://16.170.247.170')
+            fetch('http://13.60.75.208:9000/send')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
